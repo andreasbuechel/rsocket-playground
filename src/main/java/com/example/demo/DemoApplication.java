@@ -13,31 +13,10 @@ import org.springframework.web.util.pattern.PathPatternRouteMatcher;
 import reactor.core.publisher.Flux;
 
 @SpringBootApplication
-@Controller
 public class DemoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
-	}
-
-	@MessageMapping("rfs")
-	public Double foo(String pair) {
-		return 1.2;
-	}
-
-	@Bean
-	public RSocketMessageHandler rSocketMessageHandler(RSocketStrategies strategies) {
-		var handler = new RSocketMessageHandler();
-		handler.setRSocketStrategies(strategies);
-		return handler;
-	}
-
-	@Bean
-	public RSocketStrategies rSocketStrategies() {
-		return RSocketStrategies.builder()
-				.encoders(es -> es.add(new Jackson2CborEncoder()))
-				.decoders(ss -> ss.add(new Jackson2CborDecoder()))
-				.build();
 	}
 
 }
